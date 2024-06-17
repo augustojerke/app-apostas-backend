@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  postgres:
+    container_name: app_apostas_docker
+    image: bitnami/postgresql:latest
+    ports:
+      - '5431:5432'
+    environment:
+      - POSTGRES_USER=postgre
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=app_apostas
+    volumes:
+      - app_apostas_pg_data:/bitnami/postgresql
+
+volumes:
+  app_apostas_pg_data:
