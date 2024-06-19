@@ -4,11 +4,32 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "url"
+  url      = "postgresql://postgre:admin@localhost:5431/app_apostas?schema=public"
 }
 
 model Usuario {
-  id     Int     @id @default(autoincrement())
-  nome   String  @unique
-  senha  String
+  id_usuario     Int     @id @default(autoincrement())
+  nome           String  
+  senha          String
+  saldo          Decimal  @default(0)
+  apostas        Aposta[]
+}
+
+model Aposta {
+  id_aposta   Int       @id @default(autoincrement())  
+  id_usuario  Int
+  valor       Decimal
+  id_evento   Int
+  finalizada  Boolean
+
+  usuario     Usuario   @relation(fields: [id_usuario], references: [id_usuario])
+  evento      Evento    @relation(fields: [id_evento], references: [id_evento])  
+}
+
+model Evento{
+  id_evento       Int     @id @default(autoincrement())
+  nome            String
+  time_casa       String
+  time_visitante  String
+  apostas         Aposta[]
 }
