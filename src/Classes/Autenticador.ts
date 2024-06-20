@@ -2,10 +2,14 @@ export class Autenticador{
 
    private token: string | null
 
-   setToken = (t: string) => this.token = t;
+   constructor(){
+      this.token = "";
+   }
+
+   getToken = () => this.token
    
-   async validarToken(){
-      
+   validarToken(id: number | null, nome: string, senha: string){
+      this.token = `${id}/${nome}/${senha}`;
    }
 
 }

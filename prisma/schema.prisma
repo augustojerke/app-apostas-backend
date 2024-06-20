@@ -29,7 +29,5 @@ model Aposta {
 model Evento{
   id_evento       Int     @id @default(autoincrement())
   nome            String
-  time_casa       String
-  time_visitante  String
   apostas         Aposta[]
 }

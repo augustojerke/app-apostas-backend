@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client'
 import { Usuario, UsuarioSchema } from "../Classes/Usuario";
 
 const prisma = new PrismaClient()
+var usuario : Usuario;
 
 class UsuarioController{
 
@@ -10,33 +11,35 @@ class UsuarioController{
 
       const data: UsuarioSchema = req.body;
 
-      const novoUsuario = new Usuario(data);
-      await novoUsuario.cadastrarUsuario();
+      usuario = new Usuario(data);
+      await usuario.cadastrarUsuario();
 
       res.json({ message: "Usuário Cadastrado" });
 
   }
 
-  async LoginUsuario(req: Request, res: Response){
+   async LoginUsuario(req: Request, res: Response){
 
-      const data: Usuario = req.body
+      const data: UsuarioSchema = req.body;
 
-      const usuario = await prisma.usuario.findFirst({
-         where:{
-            nome: data.nome,
-            senha: data.senha
-         }
-      })
+      const login = await usuario.loginUsuario(data.nome, data.senha);
 
-      if(usuario) {
-         const token = `${usuario.id_usuario}/${usuario.nome}/${usuario.senha}`;
-         res.status(201).json({ token: token })
+      if(login){
+         res.json({ token: login, message: "Logado com Sucesso!" })
+         return;
       }
-      else{
-         res.status(401).json({ message: "Credenciais Inválidas" })
-      }
-  }
-    
+
+      res.json({ token: false, message: "Login Inválido" })
+
+   }
+  
+   async listarApostasPorUsuario(req: Request, res: Response){
+
+      const apostas = await usuario.listarApostasPorUsuario()
+
+      res.json({ data: apostas })
+
+   }
 }
 
 export { UsuarioController }
