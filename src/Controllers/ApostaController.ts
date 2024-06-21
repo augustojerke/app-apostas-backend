@@ -11,7 +11,6 @@ export class ApostaController{
       const data : ApostaSchema = req.body;
 
       const aposta = new Aposta(data);
-
       await aposta.realizarAposta();
 
       res.send({message: "Aposta Criada"})

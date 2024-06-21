@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 import { UsuarioController } from "./Controllers/UsuarioController";
 import { ApostaController } from "./Controllers/ApostaController";
+import { EventoController } from "./Controllers/EventoController";
 
 const router = Router();
 
@@ -11,5 +12,8 @@ router.get("/apostasUsuario", new UsuarioController().listarApostasPorUsuario)
 
 //Aposta
 router.post("/realizarAposta", new ApostaController().realizarAposta)
+
+//Evento
+router.get("/eventos", new EventoController().listarEventos)
 
 export {router};
