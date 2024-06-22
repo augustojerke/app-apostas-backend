@@ -40,6 +40,16 @@ class UsuarioController{
       res.json({ data: apostas })
 
    }
+
+   async atualizarSaldo(req: Request, res: Response){
+
+      const { novoSaldo } = req.body;
+
+      usuario.atualizarSaldo(novoSaldo);
+
+      res.json({ message: "Saldo Atualizado" })
+   }
+
 }
 
 export { UsuarioController }

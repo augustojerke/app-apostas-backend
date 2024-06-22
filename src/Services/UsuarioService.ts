@@ -24,4 +24,17 @@ export class UsuarioService{
       })
    }
 
+   async atualizarSaldo(novoValor: number, id: number){
+
+      await prisma.usuario.update({
+         where:{
+            id_usuario: id
+         },
+         data:{
+            saldo: novoValor
+         }
+      })
+
+   }
+
 }

@@ -29,7 +29,9 @@ export class Aposta{
     }
 
     async realizarAposta(){
-        await apostaService.realizarAposta(this.valor, this.id_usuario, this.id_evento)
+
+        await apostaService.realizarAposta(this.valor, this.id_usuario, this.id_evento);
+        
     }
 
 }

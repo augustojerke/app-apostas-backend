@@ -1,15 +1,17 @@
 import { UsuarioService } from "../Services/UsuarioService"
 import { Autenticador } from "./Autenticador"
 import { ApostaService } from "../Services/ApostaService"
+import { Pagamento } from "./Pagamento"
 
 const usuarioService = new UsuarioService()
 const apostaService = new ApostaService();
+const pagamento = new Pagamento();
 
 export interface UsuarioSchema {
    id_usuario: number
    nome: string,
    senha: string,
-   saldo: number | null
+   saldo: number
 }
 
 export class Usuario extends Autenticador{
@@ -17,7 +19,7 @@ export class Usuario extends Autenticador{
    private id_usuario: number
    private nome: string
    private senha: string
-   private saldo: number | null
+   private saldo: number
 
    constructor(u: UsuarioSchema){
       super()
@@ -28,8 +30,8 @@ export class Usuario extends Autenticador{
    }
 
    getNome = () => this.nome
-   getSenha = () => this.nome
-   getSaldo = () => this.nome
+   getSenha = () => this.senha
+   getSaldo = () => this.saldo
 
    setId_usuario = (id: number) => this.id_usuario = id;
    setNome = (nome: string) => this.nome = nome; 
@@ -66,6 +68,26 @@ export class Usuario extends Autenticador{
    async listarApostasPorUsuario(){
       
       return await apostaService.listarApostasPorUsuario(this.id_usuario)
+
+   }
+
+   operacaoDeSaldo(valor: number, operacao: number){
+
+      let retorno;
+
+      switch(operacao){
+         case 1: 
+            retorno = pagamento.depositarSaldo(valor, this); break
+         case 2: 
+            retorno = pagamento.sacarSaldo(valor, this); break;
+         default: break;
+      }
+
+   }
+
+   async atualizarSaldo(novoValor: number){
+
+      await usuarioService.atualizarSaldo(novoValor, this.id_usuario)
 
    }
  

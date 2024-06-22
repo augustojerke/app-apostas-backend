@@ -9,6 +9,7 @@ const router = Router();
 router.post('/usuario', new UsuarioController().CadastrarUsuario)
 router.post('/loginUsuario', new UsuarioController().LoginUsuario)
 router.get("/apostasUsuario", new UsuarioController().listarApostasPorUsuario)
+router.put("/atualizarSaldo", new UsuarioController().)
 
 //Aposta
 router.post("/realizarAposta", new ApostaController().realizarAposta)
