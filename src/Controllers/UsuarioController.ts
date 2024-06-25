@@ -22,6 +22,10 @@ class UsuarioController{
 
       const data: UsuarioSchema = req.body;
 
+      if(usuario == undefined){
+         usuario = new Usuario(data)
+      }
+
       const login = await usuario.loginUsuario(data.nome, data.senha);
 
       if(login){

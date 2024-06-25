@@ -61,6 +61,7 @@ export class Usuario extends Autenticador{
 
       }
 
+
       return false;
 
    } 
