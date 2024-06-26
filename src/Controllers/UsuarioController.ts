@@ -1,8 +1,6 @@
 import { Response, Request } from "express";
-import { PrismaClient } from '@prisma/client'
 import { Usuario, UsuarioSchema } from "../Classes/Usuario";
 
-const prisma = new PrismaClient()
 var usuario : Usuario;
 
 class UsuarioController{
@@ -21,6 +19,8 @@ class UsuarioController{
    async LoginUsuario(req: Request, res: Response){
 
       const data: UsuarioSchema = req.body;
+
+      console.log(req.body)
 
       if(usuario == undefined){
          usuario = new Usuario(data)

@@ -18,8 +18,8 @@ export class UsuarioService{
    async loginUsuario(nome: string, senha: string){
       return await prisma.usuario.findFirst({
          where:{
-            nome: senha,
-            senha: nome,
+            nome: nome,
+            senha: senha,
          }
       })
    }
