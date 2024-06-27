@@ -8,8 +8,8 @@ export class UsuarioService{
    async cadastrarUsuario(nome: string, senha: string){
       return await prisma.usuario.create({
          data:{
-            nome: senha,
-            senha: nome,
+            nome: nome,
+            senha: senha,
             saldo: 0
          }
       })
