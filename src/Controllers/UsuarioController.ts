@@ -47,11 +47,17 @@ class UsuarioController{
 
    async atualizarSaldo(req: Request, res: Response){
 
-      const { novoSaldo } = req.body;
+      const { novoSaldo, operacao } = req.body;
 
-      usuario.atualizarSaldo(novoSaldo);
+      usuario.operacaoDeSaldo(novoSaldo, operacao);
 
       res.json({ message: "Saldo Atualizado" })
+   }
+
+   async listarUsuario(req: Request, res: Response){
+
+      res.json({data: await usuario.listarUsuario()})
+
    }
 
 }

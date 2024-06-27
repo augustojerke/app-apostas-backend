@@ -91,5 +91,11 @@ export class Usuario extends Autenticador{
       await usuarioService.atualizarSaldo(novoValor, this.id_usuario)
 
    }
+
+   async listarUsuario(){
+
+      return {nome: this.nome, saldo: this.saldo}
+
+   }
  
 }

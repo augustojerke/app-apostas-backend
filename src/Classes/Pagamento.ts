@@ -6,6 +6,7 @@ export class Pagamento{
 
         const novoSaldo = usuario.getSaldo() + valor;
         usuario.atualizarSaldo(novoSaldo);
+        usuario.setSaldo(novoSaldo)
 
         return true;
 
@@ -23,6 +24,7 @@ export class Pagamento{
 
         const novoSaldo = usuario.getSaldo() - valor;
         usuario.atualizarSaldo(novoSaldo);
+        usuario.setSaldo(novoSaldo)
 
         return true;
     }
