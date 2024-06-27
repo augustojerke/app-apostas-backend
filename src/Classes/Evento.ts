@@ -6,7 +6,7 @@ export class Evento{
 
     async listarEventos(){
 
-        await eventoService.listarEventos();
+        return await eventoService.listarEventos();
 
     }
 

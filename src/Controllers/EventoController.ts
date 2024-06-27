@@ -6,7 +6,7 @@ export class EventoController{
     async listarEventos(req: Request, res: Response){
 
         const evento = new Evento();
-        const listaEventos = evento.listarEventos();
+        const listaEventos = await evento.listarEventos();
 
         res.send(listaEventos);
 
