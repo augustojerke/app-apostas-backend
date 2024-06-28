@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgre:admin@localhost:5431/app_apostas?schema=public"
+  url      = "postgresql://postgre:RURpt3nbbUdSPOk79c5LbhVNnU3Z6d9C@dpg-cpvf7nhu0jms73arf9i0-a.oregon-postgres.render.com/app_apostas"
 }
 
 model Usuario {
