@@ -20,8 +20,6 @@ class UsuarioController{
 
       const data: UsuarioSchema = req.body;
 
-      console.log(req.body)
-
       if(usuario == undefined){
          usuario = new Usuario(data)
       }
@@ -29,7 +27,7 @@ class UsuarioController{
       const login = await usuario.loginUsuario(data.nome, data.senha);
 
       if(login){
-         res.json({ token: login, message: "Logado com Sucesso!" })
+         res.json({ token: login.token, message: "Logado com Sucesso!", id: login.id })
          return;
       }
 

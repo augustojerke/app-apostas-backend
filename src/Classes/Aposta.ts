@@ -30,8 +30,18 @@ export class Aposta{
 
     async realizarAposta(){
 
-        await apostaService.realizarAposta(this.valor, this.id_usuario, this.id_evento);
+        const aposta = await apostaService.realizarAposta(this.valor, this.id_usuario, this.id_evento);
+
+        this.id_aposta = aposta.id_aposta
         
+    }
+
+    async setarFinalizada(){
+
+        this.setFinalizada();
+
+        await apostaService.setarFinalizada(this.id_aposta ?? 0);
+
     }
 
 }

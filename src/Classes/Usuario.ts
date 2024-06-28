@@ -57,7 +57,7 @@ export class Usuario extends Autenticador{
 
          this.validarToken(this.id_usuario, this.nome, this.senha)
 
-         return this.getToken();
+         return {token: this.getToken(), id: this.id_usuario};
 
       }
 

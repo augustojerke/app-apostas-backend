@@ -1,8 +1,5 @@
 import { Response, Request } from "express";
-import { PrismaClient } from '@prisma/client'
 import { Aposta, ApostaSchema } from "../Classes/Aposta";
-
-const prisma = new PrismaClient()
 
 export class ApostaController{
 
@@ -12,6 +9,7 @@ export class ApostaController{
 
       const aposta = new Aposta(data);
       await aposta.realizarAposta();
+      await aposta.setarFinalizada()
 
       res.send({message: "Aposta Criada"})
 
